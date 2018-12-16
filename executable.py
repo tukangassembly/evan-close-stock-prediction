@@ -15,7 +15,7 @@ while(data is None):
    else:
        print("Please select a valid option!")
        continue
-
+   
 
 print("1 : Linear Regression")
 print("2 : Random Forest")

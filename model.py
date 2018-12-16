@@ -28,10 +28,7 @@ def linearRegressor(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    #print("MSE : ", metrics.mean_squared_error(a.flatten(), b.flatten()))
-    #print("RMSE : ", np.sqrt(metrics.mean_squared_error(a.flatten(), b.flatten())))
     print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
-    #print(valid_scores)
 
     ##### Cross Validating #####
     plt.figure()
@@ -41,15 +38,8 @@ def linearRegressor(datasource):
     cv=ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
     train_sizes, train_scores, test_scores  = learning_curve(linear.LinearRegression(), X_train, y_train, cv=cv, n_jobs=1)
     train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
     test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
     plt.grid()
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
-                     train_scores_mean + train_scores_std, alpha=0.1,
-                     color="r")
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
-                     test_scores_mean + test_scores_std, alpha=0.1, color="g")
     plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
              label="Training score")
     plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
@@ -76,8 +66,6 @@ def randForestRegressor(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    #print("MSE : ", metrics.mean_squared_error(a.flatten(), b.flatten()))
-    #print("RMSE : ", np.sqrt(metrics.mean_squared_error(a.flatten(), b.flatten())))
     print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
 
     ##### Cross Validating #####
@@ -88,15 +76,8 @@ def randForestRegressor(datasource):
     cv=ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
     train_sizes, train_scores, test_scores  = learning_curve(esmb.RandomForestRegressor(n_estimators=100, random_state=0), X_train, np_train.ravel(), cv=cv, n_jobs=1)
     train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
     test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
     plt.grid()
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
-                     train_scores_mean + train_scores_std, alpha=0.1,
-                     color="r")
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
-                     test_scores_mean + test_scores_std, alpha=0.1, color="g")
     plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
              label="Training score")
     plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
@@ -126,10 +107,7 @@ def SVM(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    #print("MSE : ", metrics.mean_squared_error(a.flatten(), b.flatten()))
-    #print("RMSE : ", np.sqrt(metrics.mean_squared_error(a.flatten(), b.flatten())))
     print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
-    #print(valid_scores)
 
     ##### Cross Validating #####
     model2 = svm.SVR(kernel='sigmoid', degree=1, gamma='auto', tol=.1, C=16.2,
@@ -141,15 +119,8 @@ def SVM(datasource):
     cv=ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
     train_sizes, train_scores, test_scores  = learning_curve(model2, X_train, y_train, cv=cv, n_jobs=1)
     train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
     test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
     plt.grid()
-    plt.fill_between(train_sizes, train_scores_mean - train_scores_std,
-                     train_scores_mean + train_scores_std, alpha=0.1,
-                     color="r")
-    plt.fill_between(train_sizes, test_scores_mean - test_scores_std,
-                     test_scores_mean + test_scores_std, alpha=0.1, color="g")
     plt.plot(train_sizes, train_scores_mean, 'o-', color="r",
              label="Training score")
     plt.plot(train_sizes, test_scores_mean, 'o-', color="g",
