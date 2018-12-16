@@ -28,7 +28,6 @@ def linearRegressor(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
 
     ##### Cross Validating #####
     plt.figure()
@@ -66,7 +65,6 @@ def randForestRegressor(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
 
     ##### Cross Validating #####
     plt.figure()
@@ -107,7 +105,6 @@ def SVM(datasource):
     df = pd.DataFrame({"Actual": a.flatten(), "Predicted": b.flatten()})
     print(df)
     print("MAE : ", metrics.mean_absolute_error(a.flatten(), b.flatten()))
-    print("R2 score : ", metrics.r2_score(a.flatten(), b.flatten()))
 
     ##### Cross Validating #####
     model2 = svm.SVR(kernel='sigmoid', degree=1, gamma='auto', tol=.1, C=16.2,
